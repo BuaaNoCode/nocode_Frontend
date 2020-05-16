@@ -44,6 +44,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
 Widget getHomePage()
 {
   if (Global.isLogin)
