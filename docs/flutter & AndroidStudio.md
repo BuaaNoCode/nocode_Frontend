@@ -88,7 +88,7 @@ Doctor summary (to see all details, run flutter doctor -v):
 
   * 降低JDK版本
 
-  * 下载相关依赖文件，可以在[这里]()下载，将此压缩包中的文件解压，将里面的文件复制至android的\sdk\tools\jaxb路径中并去除版本号，若没有则新建。
+  * 下载相关依赖文件，可以在[这里](https://github.com/BuaaNoCode/nocode_Frontend/tree/lzyckd1-development/docs)下载，将此压缩包中的文件解压，将里面的文件复制至android的\sdk\tools\jaxb路径中并去除版本号，若没有则新建。
 
     再在android的\sdk\tools\bin路径下找到sdkmanager.bat，在约66行处找到一行set ...，修改为
 
