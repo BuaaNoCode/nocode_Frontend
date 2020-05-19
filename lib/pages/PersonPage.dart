@@ -8,7 +8,7 @@ class PersonPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("个人中心"),
       ),
-      body: Text("个人中心"),
+      body: ,
     );
   }
 }
