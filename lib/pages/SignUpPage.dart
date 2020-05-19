@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
+import 'package:nocodefront/Global.dart';
+import 'package:nocodefront/tool.dart';
 
 class SignUpPage extends StatelessWidget{
   @override
@@ -34,6 +39,8 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
   FocusNode _focusNodePassword = new FocusNode();
   FocusNode _focusNodeEmail = new FocusNode();
 
+  CancelToken _cancel = new CancelToken();
+
   @override
   void initState() {
     _focusNodeUserName.addListener(_focusNodeListener);
@@ -45,12 +52,96 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
   Future<Null> _focusNodeListener() async {
     if (_focusNodeUserName.hasFocus) {
       _focusNodePassword.unfocus();
+      _focusNodeEmail.unfocus();
     }
     if (_focusNodePassword.hasFocus) {
       _focusNodeUserName.unfocus();
+      _focusNodeEmail.unfocus();
     }
     if (_focusNodeEmail.hasFocus) {
-      _focusNodeEmail.unfocus();
+      _focusNodeUserName.unfocus();
+      _focusNodePassword.unfocus();
+    }
+  }
+
+  void _signUp() async {
+    print("signUp Pressed");
+    if (_userNameController.text.isEmpty || _passwordController.text.isEmpty
+        || _emailController.text.isEmpty) {
+      print('账号、密码或邮箱为空，请继续输入');
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return SimpleDialog(
+              title: Text(
+                '提示',
+                textAlign: TextAlign.center,
+              ),
+              children: <Widget>[
+                Text(
+                  '请将账号密码以及邮箱填写完整',
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            );
+          });
+    }
+    else {
+      BaseOptions options = new BaseOptions(
+        connectTimeout: 30000,
+        sendTimeout: 30000,
+        receiveTimeout: 30000,
+      );
+      Response response;
+      Dio dio = new Dio(options);
+      try {
+        showLoading(context);
+        response = await dio.request('http://114.115.205.135/auth/create',
+            data: {
+              "username": _userNameController.text,
+              "password": _passwordController.text,
+              "email": _emailController.text,
+            },
+            options: Options(method: "POST", responseType: ResponseType.json),
+            cancelToken: _cancel);
+        print(response);
+        print('response end');
+        Navigator.of(context).pop();
+        //保存用户信息
+//        Global.setUser(_userNameController.text, _passwordController.text,
+//            response.data['name'], response.data['student_id']);
+//        Global.setIsLogin(true);
+//        //切换页面
+//        Navigator.pushReplacementNamed(context, '/homePage');
+      } on DioError catch (e) {
+        print("error type:${e.type},");
+        Navigator.of(context).pop();
+        if ((e.type == DioErrorType.CONNECT_TIMEOUT) ||
+            (e.type == DioErrorType.RECEIVE_TIMEOUT) ||
+            (e.type == DioErrorType.SEND_TIMEOUT)) {
+          showError(context, "网络请求超时");
+        }
+        else if (e.type == DioErrorType.RESPONSE) {
+          print(e.response);
+          Map<String, dynamic> map = jsonDecode(e.response.toString());
+          ErrorDecode error = ErrorDecode.fromJson(map);
+          if (e.response.statusCode == 409) {
+            showError(context, "用户名冲突");
+          }
+          else if (e.response.statusCode == 400){
+            showResponseError(context, error.detailCode.toString(), error.errorMsg);
+          }
+          else {
+            showError(context, "服务器错误");
+          }
+        }
+        else if (e.type == DioErrorType.CANCEL) {
+          showError(context, "请求取消");
+        }
+        else {
+          showError(context, "未知错误");
+        }
+      }
     }
   }
 
@@ -140,12 +231,11 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
                                 fontSize: 24,
                                 color: Colors.white),
                           ),
-                          onPressed: () => print("SignUp"),
+                          onPressed: _signUp,
                           disabledColor: Colors.grey,
                         ),
                       ),
                     ),
-
                   ],
                 ),
               ),
