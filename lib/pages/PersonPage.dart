@@ -1,5 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nocodefront/Global.dart';
+import 'package:nocodefront/pages/LoginPage.dart';
+import 'package:nocodefront/pages/HomePage.dart';
+void passwordReset(String newCode)
+{
+
+}
 
 class PersonPage extends StatefulWidget {
   @override
@@ -9,6 +16,7 @@ class PersonPage extends StatefulWidget {
 class passwordUpdate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String a,b,code;
     return Scaffold(
       appBar: AppBar(
         title: Text("修改密码"),
@@ -23,6 +31,9 @@ class passwordUpdate extends StatelessWidget {
                   hintText: "原密码",
                   prefixIcon: Icon(Icons.person)
               ),
+              onChanged: (value){
+                code = value;
+              },
             ),
             new TextField(
               autofocus: true,
@@ -31,6 +42,9 @@ class passwordUpdate extends StatelessWidget {
                   hintText: "新密码",
                   prefixIcon: Icon(Icons.person)
               ),
+              onChanged: (value){
+                a = value;
+              },
             ),
             new TextField(
               autofocus: true,
@@ -39,6 +53,9 @@ class passwordUpdate extends StatelessWidget {
                   hintText: "新密码",
                   prefixIcon: Icon(Icons.person)
               ),
+              onChanged: (value){
+                b = value;
+              },
             ),
             new Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -46,7 +63,38 @@ class passwordUpdate extends StatelessWidget {
               children: <Widget>[
                 new RaisedButton(
                   child: Text("提交"),
-                  onPressed: (){},
+                  onPressed: (){
+                    if(a == b){
+                      if(code != Global.password){
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text('warning'),
+                                content: Text('输入密码错误'),
+                                actions: <Widget>[
+                                  FlatButton(child: Text('重试'),onPressed: (){Navigator.pop(context);},),
+                                ],
+                              );
+                            });
+                      }
+                      passwordReset(a);
+                      Navigator.pushNamedAndRemoveUntil(context,'/loginPage',ModalRoute.withName("/loginPage"));
+                    }
+                    else{
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text('warning'),
+                              content: Text('两次输入的新密码不一致'),
+                              actions: <Widget>[
+                                FlatButton(child: Text('重试'),onPressed: (){Navigator.pop(context);},),
+                              ],
+                            );
+                          });
+                    }
+                  },
                 ),
                 new Divider(
                   height: 10, // 默认线是 1px 的高度，高度设置的是上下的间距

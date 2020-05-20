@@ -56,6 +56,12 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "dio",
+      "rootUri": "file:///D:/flutter/flutter_windows_1.17.0-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/dio-3.0.9",
+      "packageUri": "lib/",
+      "languageVersion": "2.4"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///D:/flutter/flutter_windows_1.17.0-stable/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -72,6 +78,18 @@
       "rootUri": "file:///D:/flutter/flutter_windows_1.17.0-stable/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",
       "languageVersion": "2.0"
+    },
+    {
+      "name": "http",
+      "rootUri": "file:///D:/flutter/flutter_windows_1.17.0-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/http-0.11.3+17",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "http_parser",
+      "rootUri": "file:///D:/flutter/flutter_windows_1.17.0-stable/flutter/.pub-cache/hosted/pub.flutter-io.cn/http_parser-3.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.3"
     },
     {
       "name": "image",
@@ -206,7 +224,7 @@
       "languageVersion": "2.1"
     }
   ],
-  "generated": "2020-05-19T09:30:16.837023Z",
+  "generated": "2020-05-20T14:08:44.780155Z",
   "generator": "pub",
   "generatorVersion": "2.8.1"
 }
