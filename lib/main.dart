@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         '/recordsPage': (context) => RecordsPage(),
         '/personPage': (context) => PersonPage(),
         '/signUpPage': (context) => SignUpPage(),
-        'loginPage': (context) => LoginPage(),
+        '/loginPage': (context) => LoginPage(),
       },
     );
   }
