@@ -143,7 +143,7 @@ class _PersonPageState extends State<PersonPage> {
               title: new Text('密码'),
               subtitle: new Row(
                 children: <Widget>[
-                  new Text('password'),
+                  new Text(Global.password),
                 ],
               ),
             ),
@@ -162,7 +162,7 @@ class _PersonPageState extends State<PersonPage> {
               title: new Text('邮箱'),
               subtitle: new Row(
                 children: <Widget>[
-                  new Text('@@'),
+                  new Text(Global.account),
                 ],
               ),
             ),
