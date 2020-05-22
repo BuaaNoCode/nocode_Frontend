@@ -7,6 +7,7 @@ class RecordsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("历史记录"),
+        automaticallyImplyLeading: false,
       ),
       body: Text("历史记录"),
     );

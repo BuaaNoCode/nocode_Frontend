@@ -124,68 +124,110 @@ class _PersonPageState extends State<PersonPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("个人中心"),
+        automaticallyImplyLeading: false,
       ),
-      body: new Padding(
-        padding: const EdgeInsets.fromLTRB(10.0, 15.0, 10.0, 15.0),
-        child: new Column(
-          children: <Widget>[
-            new ListTile(
-              leading: Icon(Icons.perm_identity,size: 20),
-              title: new Text('用户名'),
-              subtitle: new Row(
-                children: <Widget>[
-                  new Text('lzyckd1'),
-                ],
-              ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+//          ListTile(
+//            trailing: Icon(Icons.perm_identity,size: 20),
+//            title: new Text('用户名', style: TextStyle(fontSize: 25),),
+//            subtitle: Text('lzyckd1'),
+//          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: ListTile(
+                    contentPadding: EdgeInsets.all(0),
+                    title: Text(
+                      Global.account,
+                      style: TextStyle(fontSize: 25,),
+                    ),
+                    subtitle: Text("邮箱:${Global.email}", style: TextStyle(fontSize: 16),),
+                  ),
+                ),
+                SizedBox(
+                  width: 100,
+                ),
+                Icon(Icons.account_circle, size: 50, color: Colors.black45,),
+//                CircleAvatar(
+//                  backgroundImage: AssetImage("assets/images/head.png"),
+//                  radius: 40,
+//                ),
+              ],
             ),
-            new ListTile(
-              leading: Icon(Icons.lock,size: 20),
-              title: new Text('密码'),
-              subtitle: new Row(
-                children: <Widget>[
-                  new Text(Global.password),
-                ],
-              ),
-            ),
-            new ListTile(
+          ),
+          SizedBox(
+            height: 40,
+          ),
+//          ListTile(
+//            leading: Icon(Icons.lock,size: 20),
+//            title: Text('密码'),
+//            subtitle: Text(Global.password),
+//          ),
+          Container(
+            child: ListTile(
               leading: Icon(Icons.lock_open,size: 20),
-              title: new Text('修改密码'),
+              title: Text('修改密码', style: TextStyle(fontSize: 20),),
+              trailing: Icon(Icons.keyboard_arrow_right, size: 20,),
               onTap: () {
-                Navigator.push( context,
-                    MaterialPageRoute(builder: (context) {
-                      return passwordUpdate();
-                    }));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => passwordUpdate()));
               },
             ),
-            new ListTile(
-              leading: Icon(Icons.email,size: 20),
-              title: new Text('邮箱'),
-              subtitle: new Row(
-                children: <Widget>[
-                  new Text(Global.account),
-                ],
-              ),
+            decoration: BoxDecoration(border: Border(top: BorderSide(width: 1, color: Colors.grey[300]))),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+//          ListTile(
+//            leading: Icon(Icons.email,size: 20),
+//            title: Text('邮箱'),
+//            subtitle: Text(Global.account),
+//          ),
+          Container(
+            child: ListTile(
+              leading: Icon(Icons.delete_forever,size: 20),
+              title: new Text('删除用户', style: TextStyle(fontSize: 20),),
+              trailing: Icon(Icons.keyboard_arrow_right, size: 20,),
             ),
-            new ListTile(
-              leading: Icon(Icons.account_circle,size: 20),
-              title: new Text('删除用户'),
-              subtitle: new Row(
-                children: <Widget>[
-                  new Text('password'),
-                ],
-              ),
-            ),
-            new ListTile(
+            decoration: BoxDecoration(border: Border(top: BorderSide(width: 1, color: Colors.grey[300]))),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            child: ListTile(
               leading: Icon(Icons.timer,size: 20),
-              title: new Text('使用次数'),
-              subtitle: new Row(
-                children: <Widget>[
-                  new Text('1'),
-                ],
-              ),
+              title: new Text('使用次数: 1', style: TextStyle(fontSize: 20),),
             ),
-          ],
-        ),
+            decoration: BoxDecoration(border: Border(top: BorderSide(width: 1, color: Colors.grey[300]))),
+          ),
+          SizedBox(
+            height: 40,
+          ),
+          Container(
+            margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: MaterialButton(
+              color: Color(0x99FFFFFF),
+              minWidth: double.infinity,
+              height: 50,
+              child: Text(
+                "退出登录",
+                style: TextStyle(fontSize: 20),
+                textAlign: TextAlign.center,
+              ),
+              onPressed: () {
+                Global.setIsLogin(false);
+                Navigator.pushNamedAndRemoveUntil(context, '/loginPage',
+                    ModalRoute.withName("/loginPage"));
+              },
+            ),
+//            decoration: BoxDecoration(border: Border.all(width: 1)),
+          )
+        ],
       ),
     );
   }
