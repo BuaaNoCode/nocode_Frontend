@@ -98,7 +98,7 @@ class _LoginPageBodyState extends State<LoginPageBody> {
         Navigator.of(context).pop();
         //保存用户信息
         Global.setUser(_userNameController.text, _passwordController.text,
-            response.data['name'], response.data['student_id']);
+            response.data['student_id']);
         Global.setIsLogin(true);
         //切换页面
         Navigator.pushReplacementNamed(context, '/homePage');

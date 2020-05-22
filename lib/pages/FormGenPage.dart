@@ -11,6 +11,7 @@ class _FormGenPageState extends State<FormGenPage> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text("表格生成页面"),
       ),
       body: Text("表格生成页面"),

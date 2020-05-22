@@ -106,8 +106,13 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
             cancelToken: _cancel);
         print(response);
         print('response end');
-        Navigator.of(context).pop();
         //保存用户信息
+        Global.setUser(_userNameController.text, _passwordController.text,
+            response.data['student_id']);
+        Global.setEmial(_emailController.text);
+        Global.setIsLogin(true);
+        //切换页面
+        Navigator.pushReplacementNamed(context, '/homePage');
 //        Global.setUser(_userNameController.text, _passwordController.text,
 //            response.data['name'], response.data['student_id']);
 //        Global.setIsLogin(true);

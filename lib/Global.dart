@@ -22,10 +22,19 @@ class Global{
   }
 
   //登录时，记录用户信息
-  static setUser(String accountValue, String passwordValue, String nameValue,
+  static setUser(String accountValue, String passwordValue,
       String studentIDValue) async {
     _sp.setString('account', accountValue);
     _sp.setString('password', passwordValue);
+    _sp.setString('studentID', studentIDValue);
+  }
+
+  static setEmial(String emailValue) async {
+    _sp.setString('email', emailValue);
+  }
+
+  static String get email {
+    return _sp.getString('email');
   }
 
   static String get account {
