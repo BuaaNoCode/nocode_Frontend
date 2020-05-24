@@ -1,0 +1,1 @@
+个人中心基本完成，功能缺失在个人中心代码的deleteUser的网络请求部分和_passwordReset部分，其中global.token是希望得到登陆时返回的token。
