@@ -17,30 +17,26 @@ class Global{
     _sp.setBool('isLogin', value);
   }
 
-  static setToken(String t)
-  {
-    _token = t;
-  }
-
-  static String get Token {
-    return _token;
-  }
-
   static bool get isLogin {
     return _sp.getBool('isLogin') ?? _isLogin;
   }
 
   //登录时，记录用户信息
-  static setUser(String accountValue, String passwordValue, String nameValue,
-      String studentIDValue) async {
+  static setUser(String accountValue, String passwordValue,
+      String studentIDValue, String takenValue) async {
     _sp.setString('account', accountValue);
     _sp.setString('password', passwordValue);
+    _sp.setString('studentID', studentIDValue);
+    _sp.setString('taken', takenValue);
   }
 
   static String get account {
     return _sp.getString('account');
   }
 
+  static String get token {
+    return _token;
+  }
   static String get password {
     return _sp.getString('password');
   }

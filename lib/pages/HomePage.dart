@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:nocodefront/pages/FormGenPage.dart';
 import 'package:nocodefront/pages/PersonPage.dart';
 import 'package:nocodefront/pages/RecordsPage.dart';
+import 'package:nocodefront/pages/DisplayTable.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -45,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
           FormGenPage(),
           RecordsPage(),
           PersonPage(),
+          DisplayTable(),
         ],
         controller: _controller,
       ),
@@ -84,6 +86,17 @@ class _MyHomePageState extends State<MyHomePage> {
               color: _bottomNavigationColor,
             ),
             title: Text("个人中心"),
+          ),
+          BottomNavigationBarItem(
+            activeIcon: Icon(
+              Icons.web_asset,
+              color: _bottomNavigationSelectColor,
+            ),
+            icon: Icon(
+              Icons.web_asset,
+              color: _bottomNavigationColor,
+            ),
+            title: Text("表单展示"),
           ),
         ],
         onTap: onTap,

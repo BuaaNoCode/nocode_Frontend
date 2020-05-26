@@ -94,14 +94,13 @@ class _LoginPageBodyState extends State<LoginPageBody> {
             options: Options(method: "POST", responseType: ResponseType.json),
             cancelToken: _cancel);
         print(response);
-        Global.setToken(response.data["access_token"]);
-        print(Global.Token);
+        print(Global.token);
         print('response end');
         print(response.data["access_token"]);
         Navigator.of(context).pop();
         //保存用户信息
         Global.setUser(_userNameController.text, _passwordController.text,
-            response.data['name'], response.data['student_id']);
+            response.data['student_id'], response.data['access_token']);
         Global.setIsLogin(true);
         //切换页面
         Navigator.pushReplacementNamed(context, '/homePage');

@@ -9,6 +9,7 @@ import 'package:nocodefront/pages/LoginPage.dart';
 import 'package:nocodefront/pages/PersonPage.dart';
 import 'package:nocodefront/pages/RecordsPage.dart';
 import 'package:nocodefront/pages/SignUpPage.dart';
+import 'package:nocodefront/pages/DisplayTable.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         '/recordsPage': (context) => RecordsPage(),
         '/personPage': (context) => PersonPage(),
         '/signUpPage': (context) => SignUpPage(),
+        '/displayTable': (context) => DisplayTable(),
       },
     );
   }

@@ -10,9 +10,9 @@ void deleteUser(BuildContext context) async
 {
   CancelToken _cancel = new CancelToken();
   print("token:");
-  print(Global.Token);
+  print(Global.token);
   BaseOptions options = new BaseOptions(
-    headers: {HttpHeaders.authorizationHeader:Global.Token},
+    headers: {HttpHeaders.authorizationHeader:Global.token},
     connectTimeout: 30000,
     sendTimeout: 30000,
     receiveTimeout: 30000,
@@ -23,9 +23,15 @@ void deleteUser(BuildContext context) async
   Dio dio = new Dio(options);
   try {
     //待完成
-    //
-    //
-    //
+    showLoading(context);
+    print("11111");
+    response = await dio.request('http://114.115.205.135/auth/disable',
+        data: {
+          "username": Global.account,
+          "password": Global.password,
+        },
+        options: Options(method: "POST", responseType: ResponseType.json),
+        cancelToken: _cancel);
     //
     Global.setIsLogin(false);
     Navigator.pushNamedAndRemoveUntil(context, '/loginPage', ModalRoute.withName("/loginPage"));
@@ -73,9 +79,9 @@ class passwordUpdate extends StatelessWidget {
   {
     CancelToken _cancel = new CancelToken();
     print("token:");
-    print(Global.Token);
+    print(Global.token);
     BaseOptions options = new BaseOptions(
-      headers: {HttpHeaders.authorizationHeader:Global.Token},
+      headers: {HttpHeaders.authorizationHeader:Global.token},
       connectTimeout: 30000,
       sendTimeout: 30000,
       receiveTimeout: 30000,
