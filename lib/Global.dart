@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Global{
@@ -12,6 +13,14 @@ class Global{
     _sp = await SharedPreferences.getInstance();
   }
 
+  static setToken(String token) async {
+    _sp.setString('token', token);
+  }
+
+  static String get token {
+    return _sp.getString('token');
+  }
+
   //是否登陆
   static setIsLogin(bool value) async {
     _sp.setBool('isLogin', value);
@@ -22,11 +31,9 @@ class Global{
   }
 
   //登录时，记录用户信息
-  static setUser(String accountValue, String passwordValue,
-      String studentIDValue) async {
+  static setUser(String accountValue, String passwordValue) async {
     _sp.setString('account', accountValue);
     _sp.setString('password', passwordValue);
-    _sp.setString('studentID', studentIDValue);
   }
 
   static setEmial(String emailValue) async {

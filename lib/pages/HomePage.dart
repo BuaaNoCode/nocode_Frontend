@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nocodefront/pages/FormGenPage.dart';
 import 'package:nocodefront/pages/PersonPage.dart';
 import 'package:nocodefront/pages/RecordsPage.dart';
+import 'package:nocodefront/ui/take_picture_screen/take_picture_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: PageView(
         onPageChanged: _pageChange,
         children: <Widget>[
-          FormGenPage(),
+          TakePictureScreen(),
           RecordsPage(),
           PersonPage(),
         ],

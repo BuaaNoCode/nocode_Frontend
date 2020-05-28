@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:nocodefront/Global.dart';
@@ -107,8 +106,7 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
         print(response);
         print('response end');
         //保存用户信息
-        Global.setUser(_userNameController.text, _passwordController.text,
-            response.data['student_id']);
+        Global.setUser(_userNameController.text, _passwordController.text);
         Global.setEmial(_emailController.text);
         Global.setIsLogin(true);
         //切换页面

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nocodefront/Global.dart';
+import 'package:nocodefront/pages/DisplayTable.dart';
 import 'package:nocodefront/pages/FormGenPage.dart';
 import 'package:nocodefront/pages/HomePage.dart';
 import 'dart:io';
@@ -36,7 +37,6 @@ class MyApp extends StatelessWidget {
       routes: {
         '/loginPage':(context) => LoginPage(),
         '/homePage': (context) => MyHomePage(),
-        '/formGenPage': (context) => FormGenPage(),
         '/recordsPage': (context) => RecordsPage(),
         '/personPage': (context) => PersonPage(),
         '/signUpPage': (context) => SignUpPage(),

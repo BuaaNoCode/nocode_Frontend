@@ -1,0 +1,4 @@
+#Thu May 28 14:51:10 CST 2020
+base.0=D\:\\BUAA\\junior\\SoftwareProject\\nocode_Frontend\\build\\app\\intermediates\\transforms\\r8\\release\\0\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

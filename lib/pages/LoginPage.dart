@@ -1,7 +1,5 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nocodefront/Global.dart';
-import 'package:nocodefront/pages/SignUpPage.dart';
 import 'package:dio/dio.dart';
 import 'dart:convert';
 
@@ -97,9 +95,9 @@ class _LoginPageBodyState extends State<LoginPageBody> {
         print('response end');
         Navigator.of(context).pop();
         //保存用户信息
-        Global.setUser(_userNameController.text, _passwordController.text,
-            response.data['student_id']);
+        Global.setUser(_userNameController.text, _passwordController.text);
         Global.setIsLogin(true);
+        Global.setToken(LoginDecode.fromJson(jsonDecode(response.toString())).token);
         //切换页面
         Navigator.pushReplacementNamed(context, '/homePage');
       } on DioError catch (e) {

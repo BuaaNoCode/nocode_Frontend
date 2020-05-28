@@ -5,7 +5,7 @@
 5    android:versionName="1.0.0" >
 6
 7    <uses-sdk
-8        android:minSdkVersion="16"
+8        android:minSdkVersion="21"
 9        android:targetSdkVersion="28" />
 10    <!--
 11         Flutter needs it to communicate with the running application
@@ -14,59 +14,111 @@
 14    <uses-permission android:name="android.permission.INTERNET" />
 14-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:3:5-66
 14-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:3:22-64
-15    <!--
-16     io.flutter.app.FlutterApplication is an android.app.Application that
-17         calls FlutterMain.startInitialization(this); in its onCreate method.
-18         In most cases you can leave this as-is, but you if you want to provide
-19         additional functionality it is fine to subclass or reimplement
-20         FlutterApplication and put your custom class here.
-21    -->
-22    <application
-22-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:9:5-30:19
-23        android:name="io.flutter.app.FlutterApplication"
-23-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:10:9-57
-24        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-24-->[androidx.core:core:1.0.0] C:\Users\19244\.gradle\caches\transforms-2\files-2.1\0a271e99b6771ad4a84318244d532fb7\core-1.0.0\AndroidManifest.xml:22:18-86
-25        android:debuggable="true"
-26        android:icon="@mipmap/ic_launcher"
-26-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:12:9-43
-27        android:label="nocodefront" >
-27-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:11:9-36
-28        <activity
-28-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:13:9-24:20
-29            android:name="com.example.nocodefront.MainActivity"
-29-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:14:13-41
-30            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-30-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:17:13-163
-31            android:hardwareAccelerated="true"
-31-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:18:13-47
-32            android:launchMode="singleTop"
-32-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:15:13-43
-33            android:theme="@style/LaunchTheme"
-33-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:16:13-47
-34            android:windowSoftInputMode="adjustResize" >
-34-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:19:13-55
-35            <intent-filter>
-35-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:20:13-23:29
-36                <action android:name="android.intent.action.MAIN" />
-36-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:21:17-68
-36-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:21:25-66
-37
-38                <category android:name="android.intent.category.LAUNCHER" />
-38-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:22:17-76
-38-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:22:27-74
-39            </intent-filter>
-40        </activity>
-41        <!--
-42             Don't delete the meta-data below.
-43             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
-44        -->
-45        <meta-data
-45-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:27:9-29:33
-46            android:name="flutterEmbedding"
-46-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:28:13-44
-47            android:value="2" />
-47-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:29:13-30
-48    </application>
-49
-50</manifest>
+15    <uses-permission android:name="android.permission.CAMERA" />
+15-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:4:5-64
+15-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:4:22-62
+16    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+16-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:5:5-80
+16-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:5:22-78
+17    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+17-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:6:5-80
+17-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:6:22-77
+18    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+18-->[:open_file] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-83
+18-->[:open_file] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-80
+19    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+19-->[:camera] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:8:5-71
+19-->[:camera] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\camera\intermediates\library_manifest\debug\AndroidManifest.xml:8:22-68
+20    <!--
+21 io.flutter.app.FlutterApplication is an android.app.Application that
+22         calls FlutterMain.startInitialization(this); in its onCreate method.
+23         In most cases you can leave this as-is, but you if you want to provide
+24         additional functionality it is fine to subclass or reimplement
+25         FlutterApplication and put your custom class here.
+26    -->
+27    <application
+27-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:12:5-34:19
+28        android:name="io.flutter.app.FlutterApplication"
+28-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:13:9-57
+29        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+29-->[androidx.core:core:1.1.0] C:\Users\19244\.gradle\caches\transforms-2\files-2.1\a528b13ac93e64cafa3d0480e2c93207\core-1.1.0\AndroidManifest.xml:24:18-86
+30        android:debuggable="true"
+31        android:icon="@mipmap/ic_launcher"
+31-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:15:9-43
+32        android:label="nocodefront" >
+32-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:14:9-36
+33        <activity
+33-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:16:9-28:20
+34            android:name="com.example.nocodefront.MainActivity"
+34-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:17:13-41
+35            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+35-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:21:13-163
+36            android:hardwareAccelerated="true"
+36-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:22:13-47
+37            android:launchMode="singleTop"
+37-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:18:13-43
+38            android:screenOrientation="portrait"
+38-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:19:13-49
+39            android:theme="@style/LaunchTheme"
+39-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:20:13-47
+40            android:windowSoftInputMode="adjustResize" >
+40-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:23:13-55
+41            <intent-filter>
+41-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:24:13-27:29
+42                <action android:name="android.intent.action.MAIN" />
+42-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:25:17-68
+42-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:25:25-66
+43
+44                <category android:name="android.intent.category.LAUNCHER" />
+44-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:26:17-76
+44-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:26:27-74
+45            </intent-filter>
+46        </activity>
+47        <!--
+48             Don't delete the meta-data below.
+49             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+50        -->
+51        <meta-data
+51-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:31:9-33:33
+52            android:name="flutterEmbedding"
+52-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:32:13-44
+53            android:value="2" />
+53-->D:\BUAA\junior\SoftwareProject\nocode_Frontend\android\app\src\main\AndroidManifest.xml:33:13-30
+54
+55        <provider
+55-->[:image_picker] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:11:9-19:20
+56            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+56-->[:image_picker] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:12:13-82
+57            android:authorities="com.example.nocodefront.flutter.image_provider"
+57-->[:image_picker] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-74
+58            android:exported="false"
+58-->[:image_picker] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-37
+59            android:grantUriPermissions="true" >
+59-->[:image_picker] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-47
+60            <meta-data
+60-->[:image_picker] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-18:75
+61                android:name="android.support.FILE_PROVIDER_PATHS"
+61-->[:image_picker] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:17:17-67
+62                android:resource="@xml/flutter_image_picker_file_paths" />
+62-->[:image_picker] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:18:17-72
+63        </provider>
+64        <provider
+64-->[:open_file] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-21:20
+65            android:name="androidx.core.content.FileProvider"
+65-->[:open_file] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-62
+66            android:authorities="com.example.nocodefront.fileProvider"
+66-->[:open_file] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-64
+67            android:exported="false"
+67-->[:open_file] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:15:13-37
+68            android:grantUriPermissions="true" >
+68-->[:open_file] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\open_file\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-47
+69            <meta-data
+69-->[:image_picker] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:16:13-18:75
+70                android:name="android.support.FILE_PROVIDER_PATHS"
+70-->[:image_picker] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:17:17-67
+71                android:resource="@xml/filepaths" />
+71-->[:image_picker] D:\BUAA\junior\SoftwareProject\nocode_Frontend\build\image_picker\intermediates\library_manifest\debug\AndroidManifest.xml:18:17-72
+72        </provider>
+73    </application>
+74
+75</manifest>

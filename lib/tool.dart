@@ -1,5 +1,18 @@
 import 'package:flutter/material.dart';
 
+class LoginDecode{
+  final String token;
+
+  LoginDecode(this.token);
+
+  LoginDecode.fromJson(Map<String, dynamic> json)
+    : token = json['access_token'];
+
+  Map<String, dynamic> toJson() => {
+    'access_token': token,
+  };
+}
+
 class ErrorDecode {
   final int code;
   final int detailCode;
