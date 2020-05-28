@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:nocodefront/pages/PersonPage.dart';
 import 'package:nocodefront/pages/RecordsPage.dart';
 import 'package:nocodefront/ui/take_picture_screen/take_picture_screen.dart';
+import 'package:camera/camera.dart';
 
 class MyHomePage extends StatefulWidget {
   @override
@@ -12,6 +13,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final _bottomNavigationColor = Colors.grey[400];
   final _bottomNavigationSelectColor = Colors.black;
+
+  // Obtain a list of the available cameras on the device.
+
   var _controller = PageController(
     initialPage: 0,
   );

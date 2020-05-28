@@ -279,7 +279,7 @@ class _PersonPageState extends State<PersonPage> {
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Expanded(
                           child: ListTile(
@@ -295,9 +295,6 @@ class _PersonPageState extends State<PersonPage> {
                               style: TextStyle(fontSize: 16),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: 100,
                         ),
                         Icon(
                           Icons.account_circle,

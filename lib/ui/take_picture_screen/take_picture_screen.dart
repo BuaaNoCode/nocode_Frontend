@@ -37,7 +37,7 @@ class TakePictureScreenState extends State<TakePictureScreen> {
       // Define the resolution to use.
       ResolutionPreset.medium,
     );
-
+    print("start");
     // Next, initialize the controller. This returns a Future.
     _initializeControllerFuture = _controller.initialize();
   }
@@ -75,7 +75,23 @@ class TakePictureScreenState extends State<TakePictureScreen> {
           visible: true,
           curve: Curves.bounceIn,
           children: [
-            // FAB 1
+//            SpeedDialChild(
+//              child: Icon(Icons.camera_alt),
+//              onTap: () async {
+//                _controller = CameraController(
+//                  widget.camera,
+//                  // Define the resolution to use.
+//                  ResolutionPreset.medium,
+//                );
+//                _controller.initialize();
+//                var path = join(
+//                    (await getTemporaryDirectory()).path,
+//                '${DateTime.now()}.png',
+//                );
+//                await _controller.takePicture(path);
+//              }
+//            ),
+//            // FAB 1
             SpeedDialChild(
                 child: Icon(Icons.camera_alt),
                 backgroundColor: Color(0xFF801E48),
@@ -84,26 +100,23 @@ class TakePictureScreenState extends State<TakePictureScreen> {
                   // catch the error.
                   try {
                     // Ensure that the camera is initialized.
-                    await _initializeControllerFuture;
-
-                    // Construct the path where the image should be saved using the
-                    // pattern package.
-                    final path = join(
-                      // Store the picture in the temp directory.
-                      // Find the temp directory using the `path_provider` plugin.
-                      (await getTemporaryDirectory()).path,
-                      '${DateTime.now()}.png',
-                    );
-                    // Attempt to take a picture and log where it's been saved.
-                    await _controller.takePicture(path);
-
+                    await ImagePicker.pickImage(source: ImageSource.camera).then((image) {
+                      if (image != null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DisplayPictureScreen(imagePath: image.path),
+                          ),
+                        );
+                      }
+                    });
                     // If the picture was taken, display it on a new screen.
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DisplayPictureScreen(imagePath: path),
-                      ),
-                    );
+//                    Navigator.push(
+//                      context,
+//                      MaterialPageRoute(
+//                        builder: (context) => DisplayPictureScreen(imagePath: path),
+//                      ),
+//                    );
                   } catch (e) {
                     // If an error occurs, log the error to the console.
                     print(e);

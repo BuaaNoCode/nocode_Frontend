@@ -227,7 +227,7 @@ class _LoginPageBodyState extends State<LoginPageBody> {
                           child: Text("用户注册",
                             style: TextStyle(color: Colors.black, fontSize: 16),
                           ),
-                          onPressed: () => Navigator.pushNamed(context, '/signUpPage'),
+                          onPressed: () => Navigator.pushNamed(context, '/emailPage'),
                         ),
                       ],
                     ),
