@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:nocodefront/Global.dart';
@@ -28,16 +27,16 @@ class SignUpPageBody extends StatefulWidget {
 class _SignUpPageBodyState extends State<SignUpPageBody> {
   String userName;
   String password;
-  String email;
+  String captcha;
   TextEditingController _userNameController = new TextEditingController();
   TextEditingController _passwordController = new TextEditingController();
-  TextEditingController _emailController = new TextEditingController();
+  TextEditingController _captchaController = new TextEditingController();
   bool showPassword = false; //是否明文显示密码
 
   GlobalKey _formkey = new GlobalKey<FormState>();
   FocusNode _focusNodeUserName = new FocusNode();
   FocusNode _focusNodePassword = new FocusNode();
-  FocusNode _focusNodeEmail = new FocusNode();
+  FocusNode _focusNodeCaptcha = new FocusNode();
 
   CancelToken _cancel = new CancelToken();
 
@@ -45,20 +44,20 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
   void initState() {
     _focusNodeUserName.addListener(_focusNodeListener);
     _focusNodePassword.addListener(_focusNodeListener);
-    _focusNodeEmail.addListener(_focusNodeListener);
+    _focusNodeCaptcha.addListener(_focusNodeListener);
     super.initState();
   }
 
   Future<Null> _focusNodeListener() async {
     if (_focusNodeUserName.hasFocus) {
       _focusNodePassword.unfocus();
-      _focusNodeEmail.unfocus();
+      _focusNodeCaptcha.unfocus();
     }
     if (_focusNodePassword.hasFocus) {
       _focusNodeUserName.unfocus();
-      _focusNodeEmail.unfocus();
+      _focusNodeCaptcha.unfocus();
     }
-    if (_focusNodeEmail.hasFocus) {
+    if (_focusNodeCaptcha.hasFocus) {
       _focusNodeUserName.unfocus();
       _focusNodePassword.unfocus();
     }
@@ -67,8 +66,8 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
   void _signUp() async {
     print("signUp Pressed");
     if (_userNameController.text.isEmpty || _passwordController.text.isEmpty
-        || _emailController.text.isEmpty) {
-      print('账号、密码或邮箱为空，请继续输入');
+        || _captchaController.text.isEmpty) {
+      print('账号、密码或验证码为空，请继续输入');
       showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -79,7 +78,7 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
               ),
               children: <Widget>[
                 Text(
-                  '请将账号密码以及邮箱填写完整',
+                  '请将账号密码以及验证码填写完整',
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -96,29 +95,30 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
       Dio dio = new Dio(options);
       try {
         showLoading(context);
+        print(Global.email + " " + _captchaController.text);
         response = await dio.request('http://114.115.205.135/auth/create',
             data: {
               "username": _userNameController.text,
               "password": _passwordController.text,
-              "email": _emailController.text,
+              "email": Global.email.toString(),
+              "captcha": _captchaController.text,
             },
             options: Options(method: "POST", responseType: ResponseType.json),
             cancelToken: _cancel);
         print(response);
         print('response end');
         //保存用户信息
-        Global.setUser(_userNameController.text, _passwordController.text,
-            response.data['student_id']);
-        Global.setEmial(_emailController.text);
+        Global.setUser(_userNameController.text, _passwordController.text);
         Global.setIsLogin(true);
         //切换页面
-        Navigator.pushReplacementNamed(context, '/homePage');
+        Navigator.pushNamedAndRemoveUntil(context, '/homePage', ModalRoute.withName("/homePage"));
 //        Global.setUser(_userNameController.text, _passwordController.text,
 //            response.data['name'], response.data['student_id']);
 //        Global.setIsLogin(true);
 //        //切换页面
 //        Navigator.pushReplacementNamed(context, '/homePage');
       } on DioError catch (e) {
+        print(e.response);
         print("error type:${e.type},");
         Navigator.of(context).pop();
         if ((e.type == DioErrorType.CONNECT_TIMEOUT) ||
@@ -134,7 +134,11 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
             showError(context, "用户名冲突");
           }
           else if (e.response.statusCode == 400){
-            showResponseError(context, error.detailCode.toString(), error.errorMsg);
+            if (error.detailCode == 40002) {
+              showError(context, "验证码已过期或验证码输入错误，建议重新获取验证码");
+            }
+            else
+              showResponseError(context, error.detailCode.toString(), error.errorMsg);
           }
           else {
             showError(context, "服务器错误");
@@ -157,7 +161,7 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
         onTap: () {
           _focusNodeUserName.unfocus();
           _focusNodePassword.unfocus();
-          _focusNodeEmail.unfocus();
+          _focusNodeCaptcha.unfocus();
         },
         child: Center(
           child: Container(
@@ -185,19 +189,6 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
                       height: 20,
                     ),
                     TextFormField(
-                      focusNode: _focusNodeEmail,
-                      controller: _emailController,
-                      validator: (v) => v.trim().isNotEmpty ? Null : '请输入邮箱',
-                      decoration: InputDecoration(
-                        hintText: '邮箱',
-                        //labelText: password,
-                        prefixIcon: Icon(Icons.email, color: Colors.black,),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    TextFormField(
                       focusNode: _focusNodePassword,
                       controller: _passwordController,
                       obscureText: !showPassword,
@@ -216,6 +207,19 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
                             });
                           },
                         ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      focusNode: _focusNodeCaptcha,
+                      controller: _captchaController,
+                      validator: (v) => v.trim().isNotEmpty ? Null : '请输入验证码',
+                      decoration: InputDecoration(
+                        hintText: '发送到您邮箱的验证码',
+                        //labelText: password,
+                        prefixIcon: Icon(Icons.email, color: Colors.black,),
                       ),
                     ),
                     Padding(

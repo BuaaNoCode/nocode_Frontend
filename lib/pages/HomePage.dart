@@ -1,17 +1,28 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nocodefront/pages/FormGenPage.dart';
 import 'package:nocodefront/pages/PersonPage.dart';
 import 'package:nocodefront/pages/RecordsPage.dart';
+import 'package:nocodefront/ui/take_picture_screen/take_picture_screen.dart';
 
 class MyHomePage extends StatefulWidget {
+  final camera;
+
+  MyHomePage({Key key, this.camera}) : super (key : key);
+
   @override
-  State<StatefulWidget> createState() => _MyHomePageState();
+  State<StatefulWidget> createState() => _MyHomePageState(camera);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final camera;
   final _bottomNavigationColor = Colors.grey[400];
   final _bottomNavigationSelectColor = Colors.black;
+
+  _MyHomePageState(this.camera) : super ();
+
+  // Obtain a list of the available cameras on the device.
+
   var _controller = PageController(
     initialPage: 0,
   );
@@ -22,7 +33,6 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
   }
-
 
   @override
   void dispose() {
@@ -42,8 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: PageView(
         onPageChanged: _pageChange,
         children: <Widget>[
-          FormGenPage(),
-          RecordsPage(),
+          TakePictureScreen(camera: this.camera),
           PersonPage(),
         ],
         controller: _controller,
@@ -63,17 +72,17 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             title: Text("表单生成"),
           ),
-          BottomNavigationBarItem(
-            activeIcon: Icon(
-              Icons.list,
-              color: _bottomNavigationSelectColor,
-            ),
-            icon: Icon(
-              Icons.list,
-              color: _bottomNavigationColor,
-            ),
-            title: Text("历史记录"),
-          ),
+//          BottomNavigationBarItem(
+//            activeIcon: Icon(
+//              Icons.list,
+//              color: _bottomNavigationSelectColor,
+//            ),
+//            icon: Icon(
+//              Icons.list,
+//              color: _bottomNavigationColor,
+//            ),
+//            title: Text("历史记录"),
+//          ),
           BottomNavigationBarItem(
             activeIcon: Icon(
               Icons.person,
