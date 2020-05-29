@@ -5,6 +5,7 @@ class Global{
   static SharedPreferences _sp;
   static bool _isLogin = false;
 
+
   /*sp中需要保存的用户信息
   static String account; 账号
   static String password; 密码

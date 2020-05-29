@@ -4,6 +4,7 @@ import 'package:nocodefront/network/ocr_client.dart';
 import 'package:nocodefront/model/ocr_result.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:nocodefront/tool.dart';
 import 'package:open_file/open_file.dart';
 
 // A widget that displays the picture taken by the user.
@@ -36,14 +37,15 @@ class DisplayPictureScreen extends StatelessWidget {
             print(path);
             final result = await OpenFile.open(path);
             print("type=${result.type}  message=${result.message}");
+            Navigator.pop(context);
           } catch(e) {
             print(e);
-            final snackBar = SnackBar(
-              content: Text('识别错误！！！'),
-            );
-            _scaffoldKey.currentState.showSnackBar(snackBar);
-          } finally {
             Navigator.pop(context);
+//            final snackBar = SnackBar(
+//              content: Text('识别错误！！！'),
+//            );
+            showError(context, "识别失败，请重新拍照");
+//            _scaffoldKey.currentState.showSnackBar(snackBar);
           }
         }
       ),

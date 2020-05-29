@@ -135,7 +135,7 @@ class _SignUpPageBodyState extends State<SignUpPageBody> {
           }
           else if (e.response.statusCode == 400){
             if (error.detailCode == 40002) {
-              showError(context, "验证码已过期，建议重新获取验证码");
+              showError(context, "验证码已过期或验证码输入错误，建议重新获取验证码");
             }
             else
               showResponseError(context, error.detailCode.toString(), error.errorMsg);

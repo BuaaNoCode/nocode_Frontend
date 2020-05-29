@@ -369,22 +369,22 @@ class _PersonPageState extends State<PersonPage> {
                     decoration: BoxDecoration(border:
                       Border(top: BorderSide(width: 1, color: Colors.grey[300]))),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    child: ListTile(
-                      leading: Icon(Icons.timer, size: 20),
-                      title: new Text(
-                        '使用次数: 1',
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
-                    decoration: BoxDecoration(
-                        border: Border(
-                            top:
-                                BorderSide(width: 1, color: Colors.grey[300]))),
-                  ),
+//                  SizedBox(
+//                    height: 10,
+//                  ),
+//                  Container(
+//                    child: ListTile(
+//                      leading: Icon(Icons.timer, size: 20),
+//                      title: new Text(
+//                        '使用次数: 1',
+//                        style: TextStyle(fontSize: 20),
+//                      ),
+//                    ),
+//                    decoration: BoxDecoration(
+//                        border: Border(
+//                            top:
+//                                BorderSide(width: 1, color: Colors.grey[300]))),
+//                  ),
                   SizedBox(
                     height: 40,
                   ),
